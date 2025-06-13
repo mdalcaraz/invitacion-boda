@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+:root {
+  --dark-red: #540f14;
+  --light-red: #801525;
+  --dark-beige: #dcd6d2;
+  --light-beige: #faefe6;
+  --almost-white: #ffffff;
+  --almost-black: #000000;
+}
+.bg-dark-red{
+    background-color: var(--dark-red);
+}
+.bg-light-red{
+    background-color: var(--light-red);
+}
+.bg-dark-beige{
+    background-color: var(--dark-beige);
+}
+.bg-light-beige{
+    background-color: var(--light-beige);
+}
+.bg-almost-white{
+    background-color: var(--almost-white);
+}
+.bg-almost-black{
+    background-color: var(--almost-black);
+}
+
+.text-dark-red{
+    color: var(--dark-red);
+}
+.text-light-red{
+    color: var(--light-red);
+}
+.text-dark-beige{
+    color: var(--dark-beige);
+}
+.text-light-beige{
+    color: var(--light-beige);
+}
+.text-almost-white{
+    color: var(--almost-white);
+}
+.text-almost-black{
+    color: var(--almost-black);
+}
+
+.delius-regular {
+  font-family: "Delius", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.vibur-regular {
+  font-family: "Vibur", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
