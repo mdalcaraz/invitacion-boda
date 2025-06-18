@@ -24,7 +24,7 @@ export default function WeddingInvitation() {
     year: "numeric",
   });
   const [isPlaying, setIsPlaying] = useState(false);
-  const audio = new Audio("/sound/tusinmi_01.mp3");
+  const audio = new Audio("/sound/tusinmi_02.mp3");
   const [copiado, setCopiado] = useState(false);
   const imageCount = 39;
   const images = Array.from({ length: imageCount }, (_, i) => i);
@@ -65,15 +65,28 @@ export default function WeddingInvitation() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!isPlaying) {
+        audio.play();
+        setIsPlaying(true);
+      }
+      window.removeEventListener("click", handleScroll); // se ejecuta solo una vez
+    };
+
+    window.addEventListener("click", handleScroll);
+
+    return () => window.removeEventListener("click", handleScroll);
+  }, []);
   return (
     <div className="bg-dark-red delius-regular w-screen">
       {/* Hero Section */}
-      <section className="h-screen bg-dark-red flex justify-center w-screen">
+      <section className="h-screen bg-dark-red flex justify-center w-screen ">
         <div className="text-center flex flex-col justify-between">
           <motion.img
             src="/img/portada.jpg"
             alt="Código de vestimenta"
-            className="w-full "
+            className="w-full max-w-3xl"
             initial={{ opacity: 0, y: -180 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
