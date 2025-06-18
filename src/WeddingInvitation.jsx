@@ -23,7 +23,12 @@ export default function WeddingInvitation() {
   const [isPlaying, setIsPlaying] = useState(false);
   const audio = new Audio("/music.mp3");
   const [copiado, setCopiado] = useState(false);
-
+  const imageCount = 39;
+  const images = Array.from({ length: imageCount }, (_, i) => i);
+  const animationSteps = Array.from({ length: imageCount + 1 }, (_, i) => {
+    if (i === imageCount) return "0%";
+    return `-${i * 80}%`;
+  });
   function copiarAlPortapapeles() {
     const texto = document.getElementById("textoACopiar").innerText;
     navigator.clipboard
@@ -99,10 +104,10 @@ export default function WeddingInvitation() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
           >
-            <p className="text-lg pt-1 italic tracking-wide font-bold text-almost-black">
+            <span className="text-lg pt-1 italic tracking-wide font-bold text-almost-black">
               A veces lo que empieza como una locura, <br /> se convierte en lo
               mejor de tu vida.
-            </p>
+            </span>
           </motion.p>
         </div>
         <div className="space-y-5 py-5 text-center text-almost-white bg-dark-red ">
@@ -171,12 +176,25 @@ export default function WeddingInvitation() {
               Buenos Vecinos 7520,
               <br /> Colonia Segovia, Guaymallén
             </p>
-            <a
+            <motion.a
               href="https://maps.app.goo.gl/GFPaRQjapVVqL3ur5"
-              className="inline-block  px-5 py-3 bg-light-red text-almost-white rounded-full shadow-md hover:bg-dark-beige transition mb-5"
+              className="inline-block px-5 py-3 bg-light-red text-almost-white rounded-full shadow-md mb-5"
+              animate={{
+                scale: [1, 1.05, 1],
+                boxShadow: [
+                  "0 0 0px rgba(0,0,0,0.2)",
+                  "0 0 12px rgba(0,0,0,0.4)",
+                  "0 0 0px rgba(0,0,0,0.2)",
+                ],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
             >
               Ver en Google Maps
-            </a>
+            </motion.a>
           </div>
         </div>
       </section>
@@ -200,13 +218,13 @@ export default function WeddingInvitation() {
           <div className="overflow-hidden relative w-full max-w-md mx-auto h-64 rounded-lg shadow-md">
             <motion.div
               className="absolute w-full h-full flex"
-              animate={{ x: ["0%", "-100%", "-200%", "-300%", "0%"] }}
-              transition={{ repeat: Infinity, duration: 20, ease: "easeInOut" }}
+              animate={{ x: animationSteps }}
+              transition={{ repeat: Infinity, duration: 100, ease: "easeInOut" }}
             >
-              {[1, 2, 3, 4].map((n) => (
+              {images.map((n) => (
                 <img
-                  key={n}
-                  src={`/img/img${n}.jpg`}
+                  key={n+1}
+                  src={`/img/img (${n+1}).jpg`}
                   className="w-full object-cover"
                   alt={`Foto ${n}`}
                 />
@@ -219,11 +237,11 @@ export default function WeddingInvitation() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
           >
-            “Gracias por formar parte de nuestra historia de amor”
+            “Gracias por formar parte de nuestro amor”
           </motion.p>
         </div>
         <div>
-          <h3 className="text-2xl font-bold mb-2">
+          <h3 className="text-2xl font-bold mb-2 mt-15p">
             ¿Querés hacernos un regalo? 🎁
           </h3>
           <p className="mb-4 text-amost-black ">
@@ -254,17 +272,86 @@ export default function WeddingInvitation() {
         )}
       </section>
 
-      {/* Donations */}
-      <section className="py-12 px-6 text-center "></section>
+      {/* Gala */}
+      <section className="h-screen text-center bg-light-beige flex flex-col justify-evenly items-center ">
+        <div className="bg-dark-red w-full">
+          <motion.p
+            className="text-lg py-4 italic tracking-wide font-bold text-almost-white"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 2 }}
+          >
+            “Y este momento... No sería lo mismo sin vos”
+          </motion.p>
+        </div>
+
+        <div>
+          <p className="text-lg tracking-wide">
+            ¡Nosotros nos vestimos de Gala <br />
+            <span className="font-bold">y Vos también!</span>
+          </p>
+          <img
+            src="/img/dresscode.png"
+            alt="Código de vestimenta"
+            className="w-20 h-auto mx-auto mb-2 rounded-full mt-2"
+          />
+        </div>
+
+        <div>
+          <p className="text-lg tracking-wide">
+            Solo no te olvides que
+            <span className="font-bold text-dark-red"> este color </span>
+            <br />
+            está reservado para las damas de honor.
+          </p>
+          <div className="mx-auto mt-2 mb-3 rounded-full bg-dark-red h-16 w-16"></div>
+        </div>
+
+        <div>
+          <p className="text-lg tracking-wide">
+            Decile que <span className="font-bold">sí</span> a nuestra
+            invitación.
+          </p>
+          <motion.a
+            href="https://wa.me/5492613398485?text=Hola%2C%20quiero%20estar%20en%20su%20boda%21"
+            target="_blank"
+            className="inline-block px-5 py-3 bg-light-red text-almost-white rounded-full shadow-md mt-1"
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            Confirmar Asistencia
+          </motion.a>
+        </div>
+
+        <div>
+          <p className="text-lg tracking-wide">
+            ¡Ayudanos a armar la{" "}
+            <span className="font-bold">playlist de la noche</span>!
+            <br />
+            Podés votar <span className="font-bold">más de una canción</span>.
+          </p>
+          <a
+            href="https://eventos.topdjgroup.com/event/a38a51f0-32bd-4867-a7a5-7932e851e6cd"
+            target="_blank"
+            className="inline-block px-5 py-3 bg-light-red text-almost-white rounded-full shadow-md mt-2"
+          >
+            Votar la música
+          </a>
+        </div>
+      </section>
 
       {/* Final Message */}
       <section className="py-12 px-6 text-center">
         <img
-          src="/img/footer.jpg"
+          src="/img/final.jpg"
           alt="Foto final pareja"
           className="mx-auto rounded-lg shadow-lg mb-6"
         />
-        <p className="text-2xl text-pink-700">
+        <p className="text-lg mb-10 italic tracking-wide font-bold text-almost-white bg-dark-red ">
           Gracias por compartir este momento tan importante con nosotros ❤️
         </p>
       </section>

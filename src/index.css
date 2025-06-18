@@ -2,7 +2,7 @@
 
 :root {
   --dark-red: #540f14;
-  --light-red: #801525;
+  --light-red: #7f2432;
   --dark-beige: #dcd6d2;
   --light-beige: #faefe6;
   --almost-white: #ffffff;
@@ -56,4 +56,8 @@
   font-family: "Vibur", cursive;
   font-weight: 400;
   font-style: normal;
+}
+
+.mt-15p {
+  margin-top: 15%;
 }
