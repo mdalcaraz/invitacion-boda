@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
+  SpeakerXMarkIcon,
+  SpeakerWaveIcon,
+  ChevronDownIcon,
   MapPinIcon,
   CalendarDaysIcon,
   ClockIcon,
@@ -21,7 +24,7 @@ export default function WeddingInvitation() {
     year: "numeric",
   });
   const [isPlaying, setIsPlaying] = useState(false);
-  const audio = new Audio("/music.mp3");
+  const audio = new Audio("/sound/tusinmi_01.mp3");
   const [copiado, setCopiado] = useState(false);
   const imageCount = 39;
   const images = Array.from({ length: imageCount }, (_, i) => i);
@@ -65,33 +68,54 @@ export default function WeddingInvitation() {
   return (
     <div className="bg-dark-red delius-regular w-screen">
       {/* Hero Section */}
-      <section className="h-screen bg-dark-red flex items-center justify-center w-screen">
-        <div className="text-center">
-          <motion.h1
-            className="mb-4 text-almost-white vibur-regular text-7xl"
-            initial={{ opacity: 0, y: -80 }}
+      <section className="h-screen bg-dark-red flex justify-center w-screen">
+        <div className="text-center flex flex-col justify-between">
+          <motion.img
+            src="/img/portada.jpg"
+            alt="Código de vestimenta"
+            className="w-full "
+            initial={{ opacity: 0, y: -180 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
               delay: 0.25,
               duration: 3,
               ease: [0.25, 0.1, 0.25, 1],
             }}
-          >
-            Tamy y Nano
-          </motion.h1>
+          />
+          <div>
+            <motion.h1
+              className="mb-4 text-almost-white vibur-regular text-7xl"
+              initial={{ opacity: 0, y: -80 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                delay: 0.25,
+                duration: 3,
+                ease: [0.25, 0.1, 0.25, 1],
+              }}
+            >
+              Tamy y Nano
+            </motion.h1>
 
-          <motion.h1
-            className="mb-2 text-almost-white delius-regular text-3xl"
-            initial={{ opacity: 0, y: 80 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: 0.25,
-              duration: 3,
-              ease: [0.25, 0.1, 0.25, 1],
-            }}
+            <motion.h1
+              className="mb-2 text-almost-white delius-regular text-3xl"
+              initial={{ opacity: 0, y: 80 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                delay: 0.25,
+                duration: 3,
+                ease: [0.25, 0.1, 0.25, 1],
+              }}
+            >
+              ¡Nos casamos!
+            </motion.h1>
+          </div>
+          <motion.div
+            className="mt-6"
+            animate={{ y: [0, 20, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
           >
-            ¡Nos casamos!
-          </motion.h1>
+            <ChevronDownIcon className="inline-block h-15 text-light-red" />
+          </motion.div>
         </div>
       </section>
 
@@ -104,9 +128,9 @@ export default function WeddingInvitation() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
           >
-            <span className="text-lg pt-1 italic tracking-wide font-bold text-almost-black">
-              A veces lo que empieza como una locura, <br /> se convierte en lo
-              mejor de tu vida.
+            <span className="text-lg pt-1 px-3 italic tracking-wide font-bold text-almost-black">
+              El amor es la mas fuerte de las pasiones, porque ataca al mismo
+              tiempo a la cabeza, al cuerpo y al corazón.
             </span>
           </motion.p>
         </div>
@@ -208,7 +232,8 @@ export default function WeddingInvitation() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
           >
-            “Un día soñamos este momento… Hoy, es realidad”
+            El día más esperado de nuestras vidas,
+            <br /> <b className="font-extrabold">esta llegando</b>
           </motion.p>
         </div>
         <div className="pb-6 pt-6">
@@ -219,26 +244,22 @@ export default function WeddingInvitation() {
             <motion.div
               className="absolute w-full h-full flex"
               animate={{ x: animationSteps }}
-              transition={{ repeat: Infinity, duration: 100, ease: "easeInOut" }}
+              transition={{
+                repeat: Infinity,
+                duration: 100,
+                ease: "easeInOut",
+              }}
             >
               {images.map((n) => (
                 <img
-                  key={n+1}
-                  src={`/img/img (${n+1}).jpg`}
+                  key={n + 1}
+                  src={`/img/img (${n + 1}).jpg`}
                   className="w-full object-cover"
                   alt={`Foto ${n}`}
                 />
               ))}
             </motion.div>
           </div>
-          <motion.p
-            className="text-lg pt-6 px-3 italic  font-bold text-almost-black"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4 }}
-          >
-            “Gracias por formar parte de nuestro amor”
-          </motion.p>
         </div>
         <div>
           <h3 className="text-2xl font-bold mb-2 mt-15p">
@@ -281,28 +302,27 @@ export default function WeddingInvitation() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
           >
-            “Y este momento... No sería lo mismo sin vos”
+            Una noche mágica nos espera...
+            <br /> ¡y queremos vivirla con vos!
           </motion.p>
         </div>
 
         <div>
-          <p className="text-lg tracking-wide">
-            ¡Nosotros nos vestimos de Gala <br />
-            <span className="font-bold">y Vos también!</span>
+          <p className="text-lg tracking-wide px-3">
+            Vestite como si esta fuera la noche más linda de nuestras vidas.
+            Porque lo es.
           </p>
           <img
             src="/img/dresscode.png"
             alt="Código de vestimenta"
-            className="w-20 h-auto mx-auto mb-2 rounded-full mt-2"
+            className="w-20 h-auto mx-auto mb-2 rounded-full mt-3"
           />
         </div>
 
         <div>
           <p className="text-lg tracking-wide">
-            Solo no te olvides que
-            <span className="font-bold text-dark-red"> este color </span>
-            <br />
-            está reservado para las damas de honor.
+            Solo te pedimos que no uses
+            <span className="font-bold text-dark-red"> este color.</span>
           </p>
           <div className="mx-auto mt-2 mb-3 rounded-full bg-dark-red h-16 w-16"></div>
         </div>
@@ -363,7 +383,11 @@ export default function WeddingInvitation() {
           onClick={() => setIsPlaying(!isPlaying)}
           aria-label="Toggle music"
         >
-          {isPlaying ? "🔊" : "🔈"}
+          {isPlaying ? (
+            <SpeakerWaveIcon className="h-6 w-6 text-dark-red" />
+          ) : (
+            <SpeakerXMarkIcon className="h-6 w-6 text-dark-red" />
+          )}
         </button>
       </div>
     </div>
