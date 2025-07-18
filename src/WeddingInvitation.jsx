@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import invitados from "./data/invitados.json";
 import { motion } from "framer-motion";
 import {
   SpeakerXMarkIcon,
@@ -10,6 +12,11 @@ import {
 } from "@heroicons/react/24/outline";
 
 export default function WeddingInvitation() {
+  const { apellido } = useParams();
+  const invitado = invitados.find(
+    (inv) => inv.apellido.toLowerCase() === apellido?.toLowerCase()
+  );
+
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -26,6 +33,9 @@ export default function WeddingInvitation() {
   const [isPlaying, setIsPlaying] = useState(false);
   const audio = new Audio("/sound/tusinmi_02.mp3");
   const [copiado, setCopiado] = useState(false);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   const imageCount = 39;
   const images = Array.from({ length: imageCount }, (_, i) => i);
   const animationSteps = Array.from({ length: imageCount + 1 }, (_, i) => {
@@ -81,8 +91,8 @@ export default function WeddingInvitation() {
   return (
     <div className="bg-dark-red delius-regular w-screen">
       {/* Hero Section */}
-      <section className="h-screen bg-dark-red flex justify-center w-screen ">
-        <div className="text-center flex flex-col justify-between">
+      <section className=" bg-dark-red flex justify-center w-screen  h-screen">
+        <div className="text-center flex flex-col justify-between ">
           <motion.img
             src="/img/portada.jpg"
             alt="Código de vestimenta"
@@ -133,65 +143,85 @@ export default function WeddingInvitation() {
       </section>
 
       {/* Countdown - Date and Location  */}
-      <section className="h-screen  text-center flex align-middle justify-around flex-col w-screen bg-light-beige">
-        <div className="text-center bg-light-beige">
+      <section className=" text-center flex align-middle justify-around flex-col w-screen bg-light-beige ">
+        {/* Mensaje motivador */}
+        <div className="text-center bg-light-beige ">
+          {invitado && (
+            <section className=" flex flex-col items-center justify-center text-center bg-light-beige px-6 my-8">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.8, ease: [0.25, 0.1, 0.25, 1] }}
+                className="max-w-3xl  rounded-2xl p-8  "
+              >
+                {/* Saludo */}
+                <h2 className="vibur-regular text-5xl text-dark-red mb-6">
+                  ¡Hola familia {invitado.apellido}!
+                </h2>
+
+                {/* Texto elegante */}
+                <p className="delius-regular text-lg leading-relaxed text-almost-black">
+                  Nos hace muy felices{" "}
+                  <span className="font-bold text-light-red">
+                    invitarlos a los {invitado.cantidad}
+                  </span>{" "}
+                  a compartir este momento tan especial.
+                </p>
+              </motion.div>
+            </section>
+          )}
+
           <motion.p
-            className="text-lg pt-1 italic tracking-wide font-bold text-almost-black"
+            className="text-lg pt-1 italic tracking-wide font-bold text-almost-black mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
           >
             <span className="text-lg pt-1 px-3 italic tracking-wide font-bold text-almost-black">
-              El amor es la mas fuerte de las pasiones, porque ataca al mismo
+              El amor es la más fuerte de las pasiones, porque ataca al mismo
               tiempo a la cabeza, al cuerpo y al corazón.
             </span>
           </motion.p>
         </div>
-        <div className="space-y-5 py-5 text-center text-almost-white bg-dark-red ">
-          <p className="text-lg">Te esperamos el día</p>
-          <p className="text-3xl font-semibold  mt-3 mb-6">
-            {weddingDate.toLocaleDateString("es-AR", {
-              day: "numeric",
-              month: "long",
-            })}
-          </p>
+        <div className="h-screen flex flex-col justify-evenly">
+          {/* Fecha y cuenta regresiva */}
+          <div className="space-y-5 py-5 text-center text-almost-white bg-dark-red">
+            <p className="text-lg">Te esperamos el día</p>
+            <p className="text-3xl font-semibold mt-3 mb-6">
+              {weddingDate.toLocaleDateString("es-AR", {
+                day: "numeric",
+                month: "long",
+              })}
+            </p>
 
-          <div className="flex justify-center items-center  text-center px-4">
-            {/* Días */}
-            <div className="w-1/4">
-              <div>
+            {/* CONTADOR */}
+            <div className="flex justify-center items-center text-center px-4">
+              {/* Días */}
+              <div className="w-1/4">
                 <p className="text-4xl font-bold">
                   {String(timeLeft.days).padStart(2, "0")}
                 </p>
                 <p className="text-sm mt-1">Días</p>
               </div>
-            </div>
-            <span className="text-3xl font-semibold">:</span>
-            {/* Horas */}
-            <div className="w-1/4">
-              <div>
+              <span className="text-3xl font-semibold">:</span>
+              {/* Horas */}
+              <div className="w-1/4">
                 <p className="text-4xl font-bold">
                   {String(timeLeft.hours).padStart(2, "0")}
                 </p>
                 <p className="text-sm mt-1">Hs</p>
               </div>
-            </div>
-            <span className="text-3xl font-semibold">:</span>
-
-            {/* Minutos */}
-            <div className="w-1/4">
-              <div>
+              <span className="text-3xl font-semibold">:</span>
+              {/* Minutos */}
+              <div className="w-1/4">
                 <p className="text-4xl font-bold">
                   {String(timeLeft.minutes).padStart(2, "0")}
                 </p>
                 <p className="text-sm mt-1">Min</p>
               </div>
-            </div>
-            <span className="text-3xl font-semibold">:</span>
-
-            {/* Segundos */}
-            <div className="w-1/4">
-              <div>
+              <span className="text-3xl font-semibold">:</span>
+              {/* Segundos */}
+              <div className="w-1/4">
                 <p className="text-4xl font-bold">
                   {String(timeLeft.seconds).padStart(2, "0")}
                 </p>
@@ -199,39 +229,41 @@ export default function WeddingInvitation() {
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="bg-light-beige ">
-          <div className=" space-y-1 font-semibold">
-            <h3 className="text-2xl font-bold">Detalles del evento</h3>
-            <CalendarDaysIcon className="inline-block h-15 text-light-red" />
-            <p className="text-lg">{weddingDateFormatted}</p>
-            <ClockIcon className="inline-block h-15 text-light-red" />
-            <p className="text-lg ">21:00 hs</p>
-            <MapPinIcon className="inline-block h-15 text-light-red" />
-            <p className="text-lg">
-              Buenos Vecinos 7520,
-              <br /> Colonia Segovia, Guaymallén
-            </p>
-            <motion.a
-              href="https://maps.app.goo.gl/GFPaRQjapVVqL3ur5"
-              className="inline-block px-5 py-3 bg-light-red text-almost-white rounded-full shadow-md mb-5"
-              animate={{
-                scale: [1, 1.05, 1],
-                boxShadow: [
-                  "0 0 0px rgba(0,0,0,0.2)",
-                  "0 0 12px rgba(0,0,0,0.4)",
-                  "0 0 0px rgba(0,0,0,0.2)",
-                ],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              Ver en Google Maps
-            </motion.a>
+          {/* Detalles del evento */}
+          <div className="bg-light-beige">
+            <div className="space-y-1 font-semibold">
+              <h3 className="text-2xl font-bold mt-">Detalles del evento</h3>
+              <CalendarDaysIcon className="inline-block h-15 text-light-red" />
+              <p className="text-lg">{weddingDateFormatted}</p>
+              <ClockIcon className="inline-block h-15 text-light-red" />
+              <p className="text-lg">21:00 hs</p>
+              <MapPinIcon className="inline-block h-15 text-light-red" />
+              <p className="text-lg">
+                Buenos Vecinos 7520,
+                <br />
+                Colonia Segovia, Guaymallén
+              </p>
+              <motion.a
+                href="https://maps.app.goo.gl/GFPaRQjapVVqL3ur5"
+                className="inline-block px-5 py-3 bg-light-red text-almost-white rounded-full shadow-md mb-5 mt-3"
+                animate={{
+                  scale: [1, 1.05, 1],
+                  boxShadow: [
+                    "0 0 0px rgba(0,0,0,0.2)",
+                    "0 0 12px rgba(0,0,0,0.4)",
+                    "0 0 0px rgba(0,0,0,0.2)",
+                  ],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                Ver en Google Maps
+              </motion.a>
+            </div>
           </div>
         </div>
       </section>
@@ -253,7 +285,13 @@ export default function WeddingInvitation() {
           <h3 className="text-2xl font-semibold pb-6">
             Nuestra historia en fotos
           </h3>
-          <div className="overflow-hidden relative w-full max-w-md mx-auto h-64 rounded-lg shadow-md">
+          <div
+            className="overflow-hidden relative w-full max-w-md mx-auto h-64 rounded-lg shadow-md cursor-pointer"
+            onClick={() => {
+              setIsGalleryOpen(true);
+              setCurrentIndex(0);
+            }}
+          >
             <motion.div
               className="absolute w-full h-full flex"
               animate={{ x: animationSteps }}
@@ -403,6 +441,49 @@ export default function WeddingInvitation() {
           )}
         </button>
       </div>
+      {isGalleryOpen && (
+        <motion.div
+          className="fixed inset-0 bg-black/90 flex items-center justify-center z-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <button
+            className="absolute top-5 right-5 text-white text-3xl"
+            onClick={() => setIsGalleryOpen(false)}
+          >
+            ✕
+          </button>
+          <div className="relative w-full max-w-4xl flex items-center justify-center">
+            <img
+              src={`/img/img (${currentIndex + 1}).jpg`}
+              alt={`Foto ${currentIndex}`}
+              className="max-h-[80vh] rounded-lg"
+            />
+            {/* Flechas de navegación */}
+            <button
+              className="absolute left-5 text-white text-4xl"
+              onClick={() =>
+                setCurrentIndex((prev) =>
+                  prev > 0 ? prev - 1 : images.length - 1
+                )
+              }
+            >
+              ‹
+            </button>
+            <button
+              className="absolute right-5 text-white text-4xl"
+              onClick={() =>
+                setCurrentIndex((prev) =>
+                  prev < images.length - 1 ? prev + 1 : 0
+                )
+              }
+            >
+              ›
+            </button>
+          </div>
+        </motion.div>
+      )}
     </div>
   );
 }
