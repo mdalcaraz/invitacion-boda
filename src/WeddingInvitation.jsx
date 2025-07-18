@@ -10,7 +10,7 @@ import {
   CalendarDaysIcon,
   ClockIcon,
 } from "@heroicons/react/24/outline";
-
+import { AnimatePresence } from "framer-motion";
 export default function WeddingInvitation() {
   const { apellido } = useParams();
   const invitado = invitados.find(
@@ -35,6 +35,7 @@ export default function WeddingInvitation() {
   const [copiado, setCopiado] = useState(false);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   const imageCount = 39;
   const images = Array.from({ length: imageCount }, (_, i) => i);
@@ -88,6 +89,39 @@ export default function WeddingInvitation() {
 
     return () => window.removeEventListener("click", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 4000); // 3 segundos
+    return () => clearTimeout(timer);
+  }, []);
+  if (loading) {
+    return (
+      <AnimatePresence>
+        <section className="h-screen w-screen flex flex-col justify-center items-center bg-dark-red text-almost-white">
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+            className="vibur-regular text-5xl mb-4"
+          >
+            Un momento...
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 2 }}
+            className="delius-regular text-xl mt-4"
+          >
+            Lo mejor está por comenzar 💖
+          </motion.p>
+          <div class="rhombus">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+          </div>
+        </section>
+      </AnimatePresence>
+    );
+  }
   return (
     <div className="bg-dark-red delius-regular w-screen">
       {/* Hero Section */}
