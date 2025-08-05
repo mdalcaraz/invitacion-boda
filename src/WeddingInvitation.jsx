@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import invitados from "./data/invitados.json";
+import Saludo from "./Saludo";
 import { motion } from "framer-motion";
 import {
   SpeakerXMarkIcon,
@@ -12,9 +13,9 @@ import {
 } from "@heroicons/react/24/outline";
 import { AnimatePresence } from "framer-motion";
 export default function WeddingInvitation() {
-  const { apellido } = useParams();
+  const { nombre } = useParams();
   const invitado = invitados.find(
-    (inv) => inv.apellido.toLowerCase() === apellido?.toLowerCase()
+    (inv) => inv.nombre.toLowerCase() === nombre?.toLowerCase()
   );
 
   const [timeLeft, setTimeLeft] = useState({
@@ -79,7 +80,7 @@ export default function WeddingInvitation() {
   useEffect(() => {
     const handleScroll = () => {
       if (!isPlaying) {
-        audio.play();
+        // audio.play();
         setIsPlaying(true);
       }
       window.removeEventListener("click", handleScroll); // se ejecuta solo una vez
@@ -91,7 +92,7 @@ export default function WeddingInvitation() {
   }, []);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 4000); // 3 segundos
+    const timer = setTimeout(() => setLoading(false), 5000); // 3 segundos
     return () => clearTimeout(timer);
   }, []);
   if (loading) {
@@ -109,14 +110,14 @@ export default function WeddingInvitation() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 2 }}
+            transition={{ delay: 2, duration: 2 }}
             className="delius-regular text-xl mt-4"
           >
             Lo mejor está por comenzar 💖
           </motion.p>
-          <div class="rhombus">
-            <div class="circle1"></div>
-            <div class="circle2"></div>
+          <div className="rhombus">
+            <div className="circle1"></div>
+            <div className="circle2"></div>
           </div>
         </section>
       </AnimatePresence>
@@ -125,7 +126,7 @@ export default function WeddingInvitation() {
   return (
     <div className="bg-dark-red delius-regular w-screen">
       {/* Hero Section */}
-      <section className=" bg-dark-red flex justify-center w-screen  h-screen">
+      <section className=" bg-dark-red flex justify-center h-screen">
         <div className="text-center flex flex-col justify-between ">
           <motion.img
             src="/img/portada.jpg"
@@ -177,31 +178,14 @@ export default function WeddingInvitation() {
       </section>
 
       {/* Countdown - Date and Location  */}
-      <section className=" text-center flex align-middle justify-around flex-col w-screen bg-light-beige ">
+      <section className=" text-center flex align-middle justify-around flex-col bg-light-beige ">
         {/* Mensaje motivador */}
         <div className="text-center bg-light-beige ">
           {invitado && (
             <section className=" flex flex-col items-center justify-center text-center bg-light-beige px-6 my-8">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.8, ease: [0.25, 0.1, 0.25, 1] }}
-                className="max-w-3xl  rounded-2xl p-8  "
-              >
-                {/* Saludo */}
-                <h2 className="vibur-regular text-5xl text-dark-red mb-6">
-                  ¡Hola familia {invitado.apellido}!
-                </h2>
-
-                {/* Texto elegante */}
-                <p className="delius-regular text-lg leading-relaxed text-almost-black">
-                  Nos hace muy felices{" "}
-                  <span className="font-bold text-light-red">
-                    invitarlos a los {invitado.cantidad}
-                  </span>{" "}
-                  a compartir este momento tan especial.
-                </p>
-              </motion.div>
+              {/* Saludo */}
+              <Saludo invitado={invitado} />
+              {/*Fin Saludo */}
             </section>
           )}
 
@@ -320,7 +304,7 @@ export default function WeddingInvitation() {
             Nuestra historia en fotos
           </h3>
           <div
-            className="overflow-hidden relative w-full max-w-md mx-auto h-64 rounded-lg shadow-md cursor-pointer"
+            className="overflow-hidden relative max-w-md mx-auto h-64 rounded-lg shadow-md cursor-pointer p-2"
             onClick={() => {
               setIsGalleryOpen(true);
               setCurrentIndex(0);
@@ -338,7 +322,7 @@ export default function WeddingInvitation() {
               {images.map((n) => (
                 <img
                   key={n + 1}
-                  src={`/img/img (${n + 1}).jpg`}
+                  src={`/img/${n + 1}.jpg`}
                   className="w-full object-cover"
                   alt={`Foto ${n}`}
                 />
@@ -490,13 +474,13 @@ export default function WeddingInvitation() {
           </button>
           <div className="relative w-full max-w-4xl flex items-center justify-center">
             <img
-              src={`/img/img (${currentIndex + 1}).jpg`}
+              src={`/img/${currentIndex + 1}.jpg`}
               alt={`Foto ${currentIndex}`}
               className="max-h-[80vh] rounded-lg"
             />
             {/* Flechas de navegación */}
             <button
-              className="absolute left-5 text-white text-4xl"
+              className="absolute left-5 text-white text-4xl bg-dark-red rounded-full px-4"
               onClick={() =>
                 setCurrentIndex((prev) =>
                   prev > 0 ? prev - 1 : images.length - 1
@@ -506,7 +490,7 @@ export default function WeddingInvitation() {
               ‹
             </button>
             <button
-              className="absolute right-5 text-white text-4xl"
+              className="absolute right-5 text-white text-4xl bg-dark-red rounded-full px-4"
               onClick={() =>
                 setCurrentIndex((prev) =>
                   prev < images.length - 1 ? prev + 1 : 0

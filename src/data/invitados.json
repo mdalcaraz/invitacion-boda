@@ -1,5 +1,5 @@
 [
-  { "apellido": "guerrero", "cantidad": 3 },
-  { "apellido": "alcaraz", "cantidad": 2 },
-  { "apellido": "leguiza", "cantidad": 4 }
+  { "nombre": "Julia", "cantidad": 4, "header":"", "mensaje":"", "paga": false, "pareja": true, "acompanante": false},
+  { "nombre": "juampi", "cantidad": 4, "header":"", "mensaje":"", "paga": false,"pareja": false, "acompanante": true},
+  { "nombre": "axxon", "cantidad": 4, "header":"¡Hola familia Axxon!", "mensaje":"con todos mis amigos de la empresa", "paga": false,"pareja": false, "acompanante": false}
 ]
