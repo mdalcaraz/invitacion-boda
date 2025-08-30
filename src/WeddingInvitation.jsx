@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import invitados from "./data/invitados.json";
 import Saludo from "./Saludo";
+import Entrada from "./Entrada";
 import { motion } from "framer-motion";
 import {
   SpeakerXMarkIcon,
@@ -13,9 +14,9 @@ import {
 } from "@heroicons/react/24/outline";
 import { AnimatePresence } from "framer-motion";
 export default function WeddingInvitation() {
-  const { nombre } = useParams();
+  const { Link } = useParams();
   const invitado = invitados.find(
-    (inv) => inv.nombre.toLowerCase() === nombre?.toLowerCase()
+    (inv) => inv.Link.toLowerCase() === Link?.toLowerCase()
   );
 
   const [timeLeft, setTimeLeft] = useState({
@@ -44,16 +45,7 @@ export default function WeddingInvitation() {
     if (i === imageCount) return "0%";
     return `-${i * 80}%`;
   });
-  function copiarAlPortapapeles() {
-    const texto = document.getElementById("textoACopiar").innerText;
-    navigator.clipboard
-      .writeText(texto)
-      .then(() => {
-        setCopiado(true);
-        setTimeout(() => setCopiado(false), 3000); // Oculta el mensaje después de 3s
-      })
-      .catch((err) => console.error("Error al copiar: ", err));
-  }
+
 
   useEffect(() => {
     audio.loop = true;
@@ -123,6 +115,8 @@ export default function WeddingInvitation() {
       </AnimatePresence>
     );
   }
+  const pagaEntrada = String(invitado?.Paga || "").toLowerCase() === "si";
+
   return (
     <div className="bg-dark-red delius-regular w-screen">
       {/* Hero Section */}
@@ -183,14 +177,15 @@ export default function WeddingInvitation() {
         <div className="text-center bg-light-beige ">
           {invitado && (
             <section className=" flex flex-col items-center justify-center text-center bg-light-beige px-6 my-8">
-              {/* Saludo */}
               <Saludo invitado={invitado} />
-              {/*Fin Saludo */}
             </section>
           )}
 
-          <motion.p
-            className="text-lg pt-1 italic tracking-wide font-bold text-almost-black mb-8"
+         
+        </div>
+        <div className="h-screen flex flex-col justify-evenly">
+           <motion.p
+            className="text-lg pt-1 italic tracking-wide font-bold text-almost-black mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
@@ -200,8 +195,7 @@ export default function WeddingInvitation() {
               tiempo a la cabeza, al cuerpo y al corazón.
             </span>
           </motion.p>
-        </div>
-        <div className="h-screen flex flex-col justify-evenly">
+
           {/* Fecha y cuenta regresiva */}
           <div className="space-y-5 py-5 text-center text-almost-white bg-dark-red">
             <p className="text-lg">Te esperamos el día</p>
@@ -331,24 +325,9 @@ export default function WeddingInvitation() {
           </div>
         </div>
         <div>
-          <h3 className="text-2xl font-bold mb-2 mt-15p">
-            ¿Querés hacernos un regalo? 🎁
-          </h3>
-          <p className="mb-4 text-amost-black ">
-            Podés colaborar con nuestra luna de miel 💕
-          </p>
-          <p className="font-mono">
-            Alias:{" "}
-            <b className="font-bold" id="textoACopiar">
-              lafiestademivida
-            </b>
-          </p>
-          <button
-            onClick={copiarAlPortapapeles}
-            className="mt-2 font-semibold inline-block  px-5 py-3 bg-light-red text-almost-white rounded-full shadow-md hover:bg-dark-beige transition mb-5"
-          >
-            Copiar
-          </button>
+         
+          <Entrada visible={pagaEntrada} monto={45000} />
+
         </div>
         {copiado && (
           <motion.div

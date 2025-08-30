@@ -9,7 +9,7 @@ function App() {
       <Route path="/" element={<WeddingInvitation />} />
 
       {/* Ruta personalizada por apellido */}
-      <Route path="/:nombre" element={<WeddingInvitation />} />
+      <Route path="/:Link" element={<WeddingInvitation />} />
     </Routes>
   );
 }

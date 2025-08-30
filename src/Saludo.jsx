@@ -3,18 +3,32 @@ import { motion } from "framer-motion";
 export default function Saludo({ invitado }) {
   if (!invitado) return null;
 
-  function firstCharCap(str) {
-    if (!str) return "";
-    return str.charAt(0).toUpperCase() + str.slice(1);
+  // Helpers
+  const firstCharCap = (str) => (!str ? "" : str.charAt(0).toUpperCase() + str.slice(1));
+
+  // El JSON viene con estas claves: Nombre, Pareja, Acompañante
+  const nombreRaw = invitado.Nombre || invitado.nombre || "";
+  const nombre = firstCharCap(nombreRaw.trim());
+
+  const pareja = Boolean(invitado.Pareja ?? invitado.pareja);
+  const acompanante = Boolean(invitado.Acompanante ?? invitado.acompanante);
+  // Plural si el nombre contiene " y "
+  const esPlural = nombreRaw.includes(" y ");
+
+  // Título
+  const titulo = `¡Hola ${nombre}!`;
+
+  // Mensaje base + destacado
+  let cuerpoInicio = "Nos hace muy felices ";
+  let destacado = esPlural ? "invitarlos" : "invitarte";
+  let extra = "";
+  let cuerpoFin = " a compartir este momento tan especial.";
+
+  if (pareja) {
+    extra = esPlural ? " junto a su pareja" : " junto a tu pareja";
+  } else if (acompanante) {
+    extra = " con un acompañante";
   }
-
-  const nombre = firstCharCap(invitado.nombre);
-  const tieneCustom = invitado.header && invitado.mensaje;
-
-  // Texto adicional condicional
-  let adicional = "";
-  if (invitado.pareja) adicional = " junto a tu pareja";
-  else if (invitado.acompanante) adicional = " junto con un acompañante";
 
   return (
     <section className="flex flex-col items-center justify-center text-center bg-light-beige px-6 my-8">
@@ -24,33 +38,16 @@ export default function Saludo({ invitado }) {
         transition={{ duration: 1.8, ease: [0.25, 0.1, 0.25, 1] }}
         className="max-w-3xl rounded-2xl"
       >
-        {tieneCustom ? (
-          <>
-            <h2 className="vibur-regular text-5xl text-dark-red mb-6">
-              {invitado.header}
-            </h2>
-            <p className="delius-regular text-lg leading-relaxed text-almost-black whitespace-pre-wrap">
-               Nos hace muy felices invitarlos a compartir nuestra boda {" "}
-                <span className="font-bold text-light-red">
-                  {invitado.mensaje}
-                  .
-                </span>
-            </p>
-          </>
-        ) : (
-          <>
-            <h2 className="vibur-regular text-5xl text-dark-red mb-6">
-              ¡Hola {nombre}!
-            </h2>
-            <p className="delius-regular text-lg leading-relaxed text-almost-black">
-              Nos hace muy felices{" "}
-              <span className="font-bold text-light-red">
-                invitarte{adicional}
-              </span>{" "}
-              a compartir este momento tan especial.
-            </p>
-          </>
-        )}
+        <h2 className="vibur-regular text-5xl text-dark-red mb-6">{titulo}</h2>
+
+        <p className="delius-regular text-lg leading-relaxed text-almost-black">
+          {cuerpoInicio}
+          <span className="font-bold text-light-red">{destacado}</span>
+          {extra && (
+            <span className="font-bold text-light-red">{extra}</span>
+          )}
+          {cuerpoFin}
+        </p>
       </motion.div>
     </section>
   );
