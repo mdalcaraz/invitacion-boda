@@ -272,9 +272,9 @@ export default function WeddingInvitation() {
         </div>
       </section>
       {/* Date & Location */}
-      <section className="h-screen text-center  bg-light-beige g-light-beige text-lg font-semibold flex flex-col">
+      <section className="h-screen text-center  bg-light-beige g-light-beige text-lg font-semibold flex flex-col justify-between">
         {/* Detalles del evento */}
-        <h3 className="text-2xl font-bold">
+        <h3 className="text-2xl font-bold mt-6">
           Cronograma <ClockIcon className="inline-block h-8" />
         </h3>
         <div>
@@ -309,7 +309,7 @@ export default function WeddingInvitation() {
             className="w-20 h-auto mx-auto mb-2 rounded-full mt-3"
           />
         </div>
-        <div>
+        <div className="mb-5">
           <p>Su puntualidad nos permitirá disfrutar cada momento juntos.</p>
         </div>
       </section>
