@@ -119,12 +119,24 @@ export default function WeddingInvitation() {
   return (
     <div className="bg-dark-red delius-regular w-screen">
       {/* Hero Section */}
-      <section className=" bg-dark-red flex justify-center h-screen">
-        <div className="text-center flex flex-col justify-between ">
+      <section className="bg-dark-red flex justify-center h-screenPortada">
+        <div className="text-center flex flex-col homeText items-center">
           <motion.img
             src="/img/portada.jpg"
-            alt="Código de vestimenta"
-            className="w-full max-w-3xl"
+            alt="Portada"
+            className="imgPortadaVert"
+            initial={{ opacity: 0, y: -180 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: 0.25,
+              duration: 3,
+              ease: [0.25, 0.1, 0.25, 1],
+            }}
+          />
+          <motion.img
+            src="/img/portada-h.jpg"
+            alt="Portada"
+            className="imgPortadaHor"
             initial={{ opacity: 0, y: -180 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -186,10 +198,9 @@ export default function WeddingInvitation() {
         </div>
       </section>
       {/* Countdown - Date  */}
-      <section className="h-screen text-center flex align-middle justify-around flex-col bg-dark-red">
+      <section className="h-screenV2V2 text-center flex align-middle justify-around flex-col bg-dark-red">
         {/* Mensaje motivador */}
-
-        <div className="h-screen flex flex-col justify-between py-5">
+        <div className="h-screenV2V2  flex flex-col justify-between py-5">
           <div className="text-center ">
             {invitado && (
               <section className=" flex flex-col items-center justify-center text-center  px-6 my-8">
@@ -272,7 +283,7 @@ export default function WeddingInvitation() {
         </div>
       </section>
       {/* Date & Location */}
-      <section className="h-screen text-center  bg-light-beige g-light-beige text-lg font-semibold flex flex-col justify-between">
+      <section className="h-screenV2 text-center  bg-light-beige g-light-beige text-lg font-semibold flex flex-col justify-between">
         {/* Detalles del evento */}
         <h3 className="text-2xl font-bold pt-8">
           Cronograma <ClockIcon className="inline-block h-8" />
@@ -315,7 +326,7 @@ export default function WeddingInvitation() {
       </section>
 
       {/* Gallery Slideshow */}
-      <section className="h-screen text-center bg-light-beige ">
+      <section className="h-screenV2 text-center bg-light-beige ">
         <div className="">
           <motion.p
             className="text-lg py-4 italic tracking-wide font-bold text-almost-white bg-dark-red "
@@ -332,7 +343,7 @@ export default function WeddingInvitation() {
             Nuestra historia en fotos
           </h3>
           <div
-            className="overflow-hidden relative max-w-md mx-auto h-64 rounded-lg shadow-md cursor-pointer p-2"
+            className="overflow-hidden relative mx-auto carrosuel rounded-lg shadow-md cursor-pointer p-2"
             onClick={() => {
               setIsGalleryOpen(true);
               setCurrentIndex(0);
@@ -374,7 +385,7 @@ export default function WeddingInvitation() {
       </section>
 
       {/* Gala */}
-      <section className="h-screen text-center bg-light-beige flex flex-col justify-evenly items-center ">
+      <section className="h-screenV2 text-center bg-light-beige flex flex-col justify-evenly items-center ">
         <div className="bg-dark-red w-full">
           <motion.p
             className="text-lg py-4 italic tracking-wide font-bold text-almost-white"
@@ -453,7 +464,7 @@ export default function WeddingInvitation() {
         <img
           src="/img/final.jpg"
           alt="Foto final pareja"
-          className="mx-auto rounded-lg shadow-lg mb-6"
+          className="mx-auto rounded-lg shadow-lg mb-6 imgEnd"
         />
         <p className="text-lg mb-10 italic tracking-wide font-bold text-almost-white bg-dark-red ">
           Gracias por compartir este momento tan importante con nosotros ❤️
