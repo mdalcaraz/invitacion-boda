@@ -20,13 +20,13 @@ export default function Entrada({ visible, monto = 45000 }) {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <div className=" flex flex-row justify-center text-light-red mb-5">
+      <div className=" flex flex-row justify-center mb-5">
         <h3 className="text-2xl font-semibold pr-5">El REGALO</h3>
         <Heart size={32} className="animate-pulse" />
       </div>
       <div className="space-y-8">
         <p className="text-almost-black leading-relaxed text-lg px-4">
-          La casa está armada. Así que nos gustaría que <b>no</b> se compliquen
+          La casa está armada. Así que nos gustaría que <b className="text-light-red">no</b> se compliquen
           con un regalo.
         </p>
         <p className="text-almost-black leading-relaxed text-lg font-semibold px-5">

@@ -31,20 +31,20 @@ export default function Saludo({ invitado }) {
   }
 
   return (
-    <section className="flex flex-col items-center justify-center text-center bg-light-beige px-6 my-8">
+    <section className="flex flex-col items-center justify-center text-center text-almost-white bg-dark-red px-6 my-8 text-almost-white">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.8, ease: [0.25, 0.1, 0.25, 1] }}
         className="max-w-3xl rounded-2xl"
       >
-        <h2 className="vibur-regular text-5xl text-dark-red mb-6">{titulo}</h2>
+        <h2 className="vibur-regular text-5xl text-almost-white mb-6">{titulo}</h2>
 
-        <p className="delius-regular text-lg leading-relaxed text-almost-black">
+        <p className="delius-regular text-lg leading-relaxed text-almost-white">
           {cuerpoInicio}
-          <span className="font-bold text-light-red">{destacado}</span>
+          <span className="font-bold text-white">{destacado}</span>
           {extra && (
-            <span className="font-bold text-light-red">{extra}</span>
+            <span className="font-bold text-white">{extra}</span>
           )}
           {cuerpoFin}
         </p>

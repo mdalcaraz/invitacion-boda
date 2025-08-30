@@ -9,8 +9,8 @@ import {
   SpeakerWaveIcon,
   ChevronDownIcon,
   MapPinIcon,
-  CalendarDaysIcon,
   ClockIcon,
+  CheckCircleIcon,
 } from "@heroicons/react/24/outline";
 import { AnimatePresence } from "framer-motion";
 export default function WeddingInvitation() {
@@ -45,7 +45,6 @@ export default function WeddingInvitation() {
     if (i === imageCount) return "0%";
     return `-${i * 80}%`;
   });
-
 
   useEffect(() => {
     audio.loop = true;
@@ -170,34 +169,36 @@ export default function WeddingInvitation() {
           </motion.div>
         </div>
       </section>
-
-      {/* Countdown - Date and Location  */}
-      <section className=" text-center flex align-middle justify-around flex-col bg-light-beige ">
-        {/* Mensaje motivador */}
-        <div className="text-center bg-light-beige ">
-          {invitado && (
-            <section className=" flex flex-col items-center justify-center text-center bg-light-beige px-6 my-8">
-              <Saludo invitado={invitado} />
-            </section>
-          )}
-
-         
-        </div>
-        <div className="h-screen flex flex-col justify-evenly">
-           <motion.p
-            className="text-lg pt-1 italic tracking-wide font-bold text-almost-black mb-4"
+      {/* Pretty Message  */}
+      <section className="text-center flex align-middle justify-around flex-col bg-light-beige">
+        <div className=" flex flex-col justify-evenly">
+          <motion.p
+            className="text-lg pt-1 italic tracking-wide font-bold text-almost-black my-10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
           >
-            <span className="text-lg pt-1 px-3 italic tracking-wide font-bold text-almost-black">
+            <span className="text-lg  px-3 italic tracking-wide font-bold text-almost-black">
               El amor es la más fuerte de las pasiones, porque ataca al mismo
               tiempo a la cabeza, al cuerpo y al corazón.
             </span>
           </motion.p>
+        </div>
+      </section>
+      {/* Countdown - Date  */}
+      <section className="h-screen text-center flex align-middle justify-around flex-col bg-dark-red">
+        {/* Mensaje motivador */}
 
+        <div className="h-screen flex flex-col justify-between py-5">
+          <div className="text-center ">
+            {invitado && (
+              <section className=" flex flex-col items-center justify-center text-center  px-6 my-8">
+                <Saludo invitado={invitado} />
+              </section>
+            )}
+          </div>
           {/* Fecha y cuenta regresiva */}
-          <div className="space-y-5 py-5 text-center text-almost-white bg-dark-red">
+          <div className="space-y-5text-center text-almost-white bg-dark-red">
             <p className="text-lg">Te esperamos el día</p>
             <p className="text-3xl font-semibold mt-3 mb-6">
               {weddingDate.toLocaleDateString("es-AR", {
@@ -241,42 +242,75 @@ export default function WeddingInvitation() {
               </div>
             </div>
           </div>
-
-          {/* Detalles del evento */}
-          <div className="bg-light-beige">
-            <div className="space-y-1 font-semibold">
-              <h3 className="text-2xl font-bold mt-">Detalles del evento</h3>
-              <CalendarDaysIcon className="inline-block h-15 text-light-red" />
-              <p className="text-lg">{weddingDateFormatted}</p>
-              <ClockIcon className="inline-block h-15 text-light-red" />
-              <p className="text-lg">21:00 hs</p>
-              <MapPinIcon className="inline-block h-15 text-light-red" />
-              <p className="text-lg">
-                Buenos Vecinos 7520,
-                <br />
-                Colonia Segovia, Guaymallén
-              </p>
-              <motion.a
-                href="https://maps.app.goo.gl/GFPaRQjapVVqL3ur5"
-                className="inline-block px-5 py-3 bg-light-red text-almost-white rounded-full shadow-md mb-5 mt-3"
-                animate={{
-                  scale: [1, 1.05, 1],
-                  boxShadow: [
-                    "0 0 0px rgba(0,0,0,0.2)",
-                    "0 0 12px rgba(0,0,0,0.4)",
-                    "0 0 0px rgba(0,0,0,0.2)",
-                  ],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                Ver en Google Maps
-              </motion.a>
-            </div>
+          <div>
+            <MapPinIcon className="inline-block h-15 text-light-beige" />
+            <p className="text-lg text-light-beige">
+              Buenos Vecinos 7520,
+              <br />
+              Colonia Segovia, Guaymallén
+            </p>
+            <motion.a
+              href="https://maps.app.goo.gl/GFPaRQjapVVqL3ur5"
+              className="inline-block px-5 py-3 bg-light-beige text-dark-red rounded-full shadow-md mb-5 mt-3"
+              animate={{
+                scale: [1, 1.05, 1],
+                boxShadow: [
+                  "0 0 0px rgba(0,0,0,0.2)",
+                  "0 0 12px rgba(0,0,0,0.4)",
+                  "0 0 0px rgba(0,0,0,0.2)",
+                ],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              Ver en Google Maps
+            </motion.a>
           </div>
+        </div>
+      </section>
+      {/* Date & Location */}
+      <section className="h-screen text-center  bg-light-beige g-light-beige text-lg font-semibold flex flex-col">
+        {/* Detalles del evento */}
+        <h3 className="text-2xl font-bold">
+          Cronograma <ClockIcon className="inline-block h-8" />
+        </h3>
+        <div>
+          <p>Civil 21:30 hs </p>
+          <img
+            src="/img/civil.png"
+            alt="Civil"
+            className="w-20 h-auto mx-auto mb-2 rounded-full mt-3"
+          />
+        </div>
+        <div>
+          <p>Cena 22:30 hs</p>
+          <img
+            src="/img/cena.png"
+            alt="Cena"
+            className="w-20 h-auto mx-auto mb-2 rounded-full mt-3"
+          />
+        </div>
+        <div>
+          <p>Fiesta 23:30</p>
+          <img
+            src="/img/fiesta.png"
+            alt="Fiesta"
+            className="w-20 h-auto mx-auto mb-2 rounded-full mt-3"
+          />
+        </div>
+        <div>
+          <p>Hasta que salga el Sol!</p>
+          <img
+            src="/img/sol.png"
+            alt="sol"
+            className="w-20 h-auto mx-auto mb-2 rounded-full mt-3"
+          />
+        </div>
+        <div>
+          <p>Su puntualidad nos permitirá disfrutar cada momento juntos.</p>
         </div>
       </section>
 
@@ -325,9 +359,7 @@ export default function WeddingInvitation() {
           </div>
         </div>
         <div>
-         
           <Entrada visible={pagaEntrada} monto={45000} />
-
         </div>
         {copiado && (
           <motion.div
@@ -356,6 +388,10 @@ export default function WeddingInvitation() {
         </div>
 
         <div>
+          <h3 className="text-2xl font-bold mb-4">
+            Detalles del evento <CheckCircleIcon className="inline-block h-8" />
+          </h3>
+
           <p className="text-lg tracking-wide px-3">
             Vestite como si esta fuera la noche más linda de nuestras vidas.
             Porque lo es.
