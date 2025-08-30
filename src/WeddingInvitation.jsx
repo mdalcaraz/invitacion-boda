@@ -274,7 +274,7 @@ export default function WeddingInvitation() {
       {/* Date & Location */}
       <section className="h-screen text-center  bg-light-beige g-light-beige text-lg font-semibold flex flex-col justify-between">
         {/* Detalles del evento */}
-        <h3 className="text-2xl font-bold mt-6">
+        <h3 className="text-2xl font-bold pt-8">
           Cronograma <ClockIcon className="inline-block h-8" />
         </h3>
         <div>
@@ -304,12 +304,12 @@ export default function WeddingInvitation() {
         <div>
           <p>Hasta que salga el Sol!</p>
           <img
-            src="/img/sol.png"
+            src="/img/sol2.png"
             alt="sol"
-            className="w-20 h-auto mx-auto mb-2 rounded-full mt-3"
+            className="w-20 h-auto mx-auto mb-2 rounded-full mt-1"
           />
         </div>
-        <div className="mb-5">
+        <div className="pb-5">
           <p>Su puntualidad nos permitirá disfrutar cada momento juntos.</p>
         </div>
       </section>
