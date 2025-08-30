@@ -492,12 +492,6 @@ export default function WeddingInvitation() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          <button
-            className="absolute top-5 right-5 text-white text-3xl"
-            onClick={() => setIsGalleryOpen(false)}
-          >
-            ✕
-          </button>
           <div className="relative w-full max-w-4xl flex items-center justify-center">
             <img
               src={`/img/${currentIndex + 1}.jpg`}
@@ -526,6 +520,12 @@ export default function WeddingInvitation() {
               ›
             </button>
           </div>
+          <button
+            className="absolute top-5 right-5 text-white text-3xl"
+            onClick={() => setIsGalleryOpen(false)}
+          >
+            ✕
+          </button>
         </motion.div>
       )}
     </div>
