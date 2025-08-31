@@ -2,7 +2,9 @@
 
 :root {
   --dark-red: #540f14;
-  --light-red: #7f2432;
+  --dark-red-1: #aa101b;
+  --dark-red-2: #ef2e3b;
+  --light-red: #42050f;
   --dark-beige: #dcd6d2;
   --light-beige: #faefe6;
   --almost-white: #ffffff;
@@ -10,6 +12,12 @@
 }
 .bg-dark-red {
   background-color: var(--dark-red);
+}
+.bg-dark-red-1 {
+  background-color: var(--dark-red-1);
+}
+.bg-dark-red-2 {
+  background-color: var(--dark-red-2);
 }
 .bg-light-red {
   background-color: var(--light-red);
@@ -199,12 +207,20 @@
 
 .h-screenV2 {
   height: 100vh;
+  max-height: 1100px;
   min-height: 900px;
+}
+
+.h-screenCrono{
+  height: 100vh;
+  min-height: 400px;
+  max-height: 700px;
 }
 
 .h-screenPortada {
   height: 100vh;
   min-height: 500px;
+  max-height: 700px;
 }
 
 @media (orientation: landscape) {
@@ -235,11 +251,13 @@
   .imgPortadaVert {
     display: block;
     width: 100%;
+    max-width: 600px;
   }
 
   .imgPortadaHor {
     display: none;
     width: 100%;
+    
   }
 
   .homeText {

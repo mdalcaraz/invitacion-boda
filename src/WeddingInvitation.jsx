@@ -283,7 +283,7 @@ export default function WeddingInvitation() {
         </div>
       </section>
       {/* Date & Location */}
-      <section className="h-screenV2 text-center  bg-light-beige g-light-beige text-lg font-semibold flex flex-col justify-between">
+      <section className="h-screenCrono text-center  bg-light-beige g-light-beige text-lg font-semibold flex flex-col justify-between">
         {/* Detalles del evento */}
         <h3 className="text-2xl font-bold pt-8">
           Cronograma <ClockIcon className="inline-block h-8" />
@@ -417,9 +417,13 @@ export default function WeddingInvitation() {
         <div>
           <p className="text-lg tracking-wide">
             Solo te pedimos que no uses
-            <span className="font-bold text-dark-red"> este color.</span>
+            <span className="font-bold text-dark-red"> esta gama de colores.</span>
           </p>
-          <div className="mx-auto mt-2 mb-3 rounded-full bg-dark-red h-16 w-16"></div>
+          <div className="flex flex-row justify-center space-x-3">
+            <div className=" mt-2 mb-3 rounded-full bg-dark-red-2 h-16 w-16"></div>
+            <div className=" mt-2 mb-3 rounded-full bg-dark-red-1 h-16 w-16"></div>
+            <div className=" mt-2 mb-3 rounded-full bg-dark-red h-16 w-16"></div>
+          </div>
         </div>
 
         <div>

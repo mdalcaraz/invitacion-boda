@@ -25,17 +25,14 @@ export default function Entrada({ visible, monto = 45000 }) {
         <Heart size={32} className="animate-pulse" />
       </div>
       <div className="space-y-8">
-        <p className="text-almost-black leading-relaxed text-lg px-4">
-          La casa está armada. Así que nos gustaría que <b className="text-light-red">no</b> se compliquen
-          con un regalo.
-        </p>
-        <p className="text-almost-black leading-relaxed text-lg font-semibold px-5">
-          Si quieren colaborar con la luna de miel, les pedimos una colabroación
-          a partir de{" "}
+        
+        <p className="text-almost-black leading-relaxed text-lg  px-5">
+          Tu presencia es el mejor regalo, por lo que para celebrar con vos,
+          te proponemos cubrir una parte del costo de tu tarjeta con un aporte de{" "}
           <span className="font-bold text-light-red">
             ${monto.toLocaleString("es-AR")}
           </span>{" "}
-          al siguiente alias.
+          por persona al siguiente alias.
         </p>
         <div className="">
           <p className="font-mono">
@@ -48,7 +45,7 @@ export default function Entrada({ visible, monto = 45000 }) {
             onClick={copiarAlPortapapeles}
             className="mt-2 font-semibold inline-block  px-5 py-3 bg-light-red text-almost-white rounded-full shadow-md hover:bg-dark-beige transition mb-5"
           >
-            Copiar
+            Copiar Alias
           </button>
         </div>
       </div>
