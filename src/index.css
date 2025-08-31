@@ -219,8 +219,8 @@
 
 .h-screenPortada {
   height: 100vh;
-  min-height: 500px;
-  max-height: 700px;
+  min-height: 800px;
+  max-height: 900px;
 }
 
 @media (orientation: landscape) {
