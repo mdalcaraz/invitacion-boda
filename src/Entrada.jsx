@@ -57,8 +57,7 @@ export default function Entrada({ visible, monto = 65000 }) {
         <h3 className="text-2xl font-semibold pr-5">El REGALO</h3>
         <Heart size={32} className="animate-pulse" />
       </div>
-      <div className="space-y-8">
-        
+      <div className="space-y-4">
         <p className="text-almost-black leading-relaxed text-lg  px-5">
           Tu presencia es el mejor regalo, por lo que para celebrar con vos,
           te proponemos ayudarnos con una parte del costo de tu tarjeta con un aporte de{" "}
@@ -68,7 +67,7 @@ export default function Entrada({ visible, monto = 65000 }) {
           por persona al siguiente alias.
         </p>
         <p className="text-almost-black leading-relaxed text-lg  px-5">
-          Ahora, si queres ayudarnos con nuestra luna de miel, sos libre de colaborar con otro monto al mismo alias.<br/>
+          Y, si queres ayudarnos con nuestra luna de miel, sos libre de colaborar con otro monto al mismo alias.<br/>
           <span  className="font-bold text-light-red">¡Muchas gracias!</span>
         </p>
         <div className="">

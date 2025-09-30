@@ -370,7 +370,7 @@ export default function WeddingInvitation() {
           </div>
         </div>
         <div>
-          <Entrada visible={pagaEntrada} monto={45000} />
+          <Entrada visible={pagaEntrada} monto={65000} />
         </div>
         {copiado && (
           <motion.div
@@ -429,7 +429,7 @@ export default function WeddingInvitation() {
         <div>
           <p className="text-lg tracking-wide">
             Decile que <span className="font-bold">sí</span> a nuestra
-            invitación.
+            invitación. <br/><span className="font-bold">Tenes tiempo hasta el 15 de enero.</span>
           </p>
           <motion.a
             href="https://wa.me/5492613398485?text=Hola%2C%20quiero%20estar%20en%20su%20boda%21"
