@@ -312,7 +312,7 @@
     "Acompanante":false
   },
   {
-    "Link":"Gaston y Sol",
+    "Link":"GastonySol",
     "Nombre":"Gaston y Sol",
     "Apellido":"",
     "Paga":"si",
@@ -328,7 +328,7 @@
     "Acompanante":true
   },
   {
-    "Link":"Ruly y Pame",
+    "Link":"RulyyPame",
     "Nombre":"Ruly y Pame",
     "Apellido":"",
     "Paga":"si",
