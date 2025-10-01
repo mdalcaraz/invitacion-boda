@@ -66,10 +66,6 @@ export default function Entrada({ visible, monto = 65000 }) {
           </span>{" "}
           por persona al siguiente alias.
         </p>
-        <p className="text-almost-black leading-relaxed text-lg  px-5">
-          Y, si queres ayudarnos con nuestra luna de miel, sos libre de colaborar con otro monto al mismo alias.<br/>
-          <span  className="font-bold text-light-red">¡Muchas gracias!</span>
-        </p>
         <div className="">
           <p className="font-mono">
             Alias:{" "}
@@ -84,6 +80,11 @@ export default function Entrada({ visible, monto = 65000 }) {
             Copiar Alias
           </button>
         </div>
+        <p className="text-almost-black leading-relaxed text-lg  px-5">
+          Y, si queres ayudarnos con nuestra luna de miel, sos libre de colaborar con otro monto al mismo alias.<br/>
+          <span  className="font-bold text-light-red">¡Muchas gracias!</span>
+        </p>
+        
       </div>
     </motion.section>
   );
