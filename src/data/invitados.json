@@ -735,7 +735,7 @@
     "Nombre":"Mica y Dani",
     "Apellido":"",
     "Paga":"si",
-    "Pareja":true,
+    "Pareja":false,
     "Acompanante":false
   }
 ]
