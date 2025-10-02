@@ -694,5 +694,39 @@
     "Paga":"si",
     "Pareja":false,
     "Acompanante":false
+  },
+  {
+    "Link":"Rachel",
+    "Nombre":"Rachel",
+    "Apellido":"",
+    "Paga":"no",
+    "Pareja":false,
+    "Acompanante":false
+  },
+  {
+    "Link":"NelsonLokiz",
+    "Nombre":"Nelson",
+    "Apellido":"",
+    "Paga":"si",
+    "Pareja":false,
+    "Acompanante":false
+  }
+  ,
+  {
+    "Link":"Elias",
+    "Nombre":"Elias",
+    "Apellido":"",
+    "Paga":"si",
+    "Pareja":false,
+    "Acompanante":false
+  }
+  ,
+  {
+    "Link":"naim",
+    "Nombre":"naim",
+    "Apellido":"",
+    "Paga":"si",
+    "Pareja":true,
+    "Acompanante":false
   }
 ]
