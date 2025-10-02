@@ -717,13 +717,22 @@
     "Nombre":"Elias",
     "Apellido":"",
     "Paga":"si",
-    "Pareja":false,
+    "Pareja":true,
     "Acompanante":false
   }
   ,
   {
     "Link":"naim",
     "Nombre":"naim",
+    "Apellido":"",
+    "Paga":"si",
+    "Pareja":true,
+    "Acompanante":false
+  }
+  ,
+  {
+    "Link":"micaydani",
+    "Nombre":"Mica y Dani",
     "Apellido":"",
     "Paga":"si",
     "Pareja":true,
