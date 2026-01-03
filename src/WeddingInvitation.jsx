@@ -454,7 +454,7 @@ export default function WeddingInvitation() {
             Podés votar <span className="font-bold">más de una canción</span>.
           </p>
           <a
-            href="https://eventos.topdjgroup.com/event/a38a51f0-32bd-4867-a7a5-7932e851e6cd"
+            href="https://eventos.topdjgroup.com/event/7d728d02-bcf8-4c67-91db-a691fd627c31"
             target="_blank"
             className="inline-block px-5 py-3 bg-light-red text-almost-white rounded-full shadow-md mt-2"
           >
