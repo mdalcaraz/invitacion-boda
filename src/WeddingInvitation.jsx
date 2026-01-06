@@ -429,7 +429,7 @@ export default function WeddingInvitation() {
         <div>
           <p className="text-lg tracking-wide">
             Decile que <span className="font-bold">sí</span> a nuestra
-            invitación. <br/><span className="font-bold">Tenes tiempo hasta el 15 de enero.</span>
+            invitación. <br/><span className="font-bold">Tenes tiempo hasta el 10 de febrero.</span>
           </p>
           <motion.a
             href="https://wa.me/5492613398485?text=Hola%2C%20quiero%20estar%20en%20su%20boda%21"
@@ -458,7 +458,7 @@ export default function WeddingInvitation() {
             target="_blank"
             className="inline-block px-5 py-3 bg-light-red text-almost-white rounded-full shadow-md mt-2"
           >
-            Votar la música
+            Votar música
           </a>
         </div>
       </section>
