@@ -18,7 +18,7 @@ export default function WeddingInvitation() {
   const invitado = invitados.find(
     (inv) => inv.Link.toLowerCase() === Link?.toLowerCase()
   );
-
+console.log(invitado)
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
