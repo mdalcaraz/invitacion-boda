@@ -746,5 +746,13 @@
     "Paga":"si",
     "Pareja":true,
     "Acompanante":true
+  }  ,
+  {
+    "Link":"GuilleFa",
+    "Nombre":"Guille",
+    "Apellido":"",
+    "Paga":"si",
+    "Pareja":true,
+    "Acompanante":false
   }
 ]
